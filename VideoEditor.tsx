@@ -167,7 +167,13 @@ export default function VideoEditor({ setActiveTab }: VideoEditorProps) {
         canvas.width = 2500;
         canvas.height = 2500;
         const ctx = canvas.getContext('2d');
-        if (!ctx) return resolve(transparentLogoBase64);
+        if (!ctx) return resolve('');
+
+        // Fix for WebKit Canvas composite rendering bug (forces GPU acceleration layer)
+        ctx.fillStyle = 'rgba(118, 114, 48, 0.001)';
+        ctx.fillRect(0, 0, 1, 1);
+        ctx.fillStyle = 'rgba(99, 107, 115, 0.001)';
+        ctx.fillRect(1, 1, 1, 1);
         
         ctx.translate(canvas.width / 2, canvas.height / 2);
         ctx.rotate(-Math.PI / 6); // -30 derece eğim (ÖSYM tarzı)
