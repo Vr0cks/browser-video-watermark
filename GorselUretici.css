@@ -1,0 +1,594 @@
+/* Scoped styles for the Gorsel Tasarimci Tab in by-karaca-admin ERP */
+
+.gorsel-tasarim-wrapper {
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* 1. DARK THEME DEFINITION */
+.gorsel-tasarim-wrapper.dark-theme {
+  --bg-primary: #050505;
+  --bg-secondary: #0A0A0B;
+  --bg-tertiary: #1A1A1E;
+  
+  /* Cards */
+  --card-bg: rgba(10, 10, 11, 0.85);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-hover: rgba(16, 185, 129, 0.4);
+  --card-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* Accents */
+  --primary: #10b981;
+  --primary-glow: rgba(16, 185, 129, 0.4);
+  --secondary: #8b5cf6;
+  --secondary-glow: rgba(139, 92, 246, 0.4);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  
+  /* Inputs */
+  --input-bg: rgba(8, 12, 20, 0.7);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --input-focus-bg: rgba(5, 5, 5, 0.95);
+  
+  /* Presets */
+  --preset-bg: rgba(255, 255, 255, 0.03);
+  --preset-active-bg: rgba(16, 185, 129, 0.15);
+  --preset-text: #94a3b8;
+  --preset-active-text: #ffffff;
+}
+
+/* 2. LIGHT THEME DEFINITION */
+.gorsel-tasarim-wrapper.light-theme {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  
+  /* Cards */
+  --card-bg: #ffffff;
+  --card-border: rgba(16, 185, 129, 0.15);
+  --card-border-hover: rgba(16, 185, 129, 0.5);
+  --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08), 0 8px 12px -6px rgba(15, 23, 42, 0.04);
+  
+  /* Text */
+  --text-primary: #0f172a; /* Deep Charcoal */
+  --text-secondary: #334155; /* Slate-700 */
+  --text-muted: #64748b;
+  
+  /* Accents */
+  --primary: #059669; /* Slightly darker green for light mode readability */
+  --primary-glow: rgba(16, 185, 129, 0.25);
+  --secondary: #7c3aed;
+  --secondary-glow: rgba(139, 92, 246, 0.25);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  
+  /* Inputs */
+  --input-bg: #f8fafc;
+  --input-border: #cbd5e1;
+  --input-focus-bg: #ffffff;
+  
+  /* Presets */
+  --preset-bg: rgba(16, 185, 129, 0.05);
+  --preset-active-bg: rgba(16, 185, 129, 0.18);
+  --preset-text: #334155;
+  --preset-active-text: #059669;
+}
+
+/* Glowing Spheres (Only visible or prominent in dark mode) */
+.gorsel-tasarim-wrapper .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.18;
+}
+.gorsel-tasarim-wrapper.light-theme .orb {
+  opacity: 0.05; /* Fainter in light theme to avoid washout */
+}
+.gorsel-tasarim-wrapper .orb-primary {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--primary) 0%, transparent 80%);
+  top: -50px;
+  right: -50px;
+  animation: float-orb 15s infinite alternate ease-in-out;
+}
+.gorsel-tasarim-wrapper .orb-secondary {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--secondary) 0%, transparent 80%);
+  bottom: -50px;
+  left: -50px;
+  animation: float-orb 20s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes float-orb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.08); }
+  100% { transform: translate(-15px, 15px) scale(0.96); }
+}
+
+/* Base styles using variables */
+.gorsel-tasarim-wrapper .glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1.5rem;
+  transition: var(--transition-normal);
+  box-shadow: var(--card-shadow);
+}
+
+.gorsel-tasarim-wrapper .glass-card:hover {
+  border-color: var(--card-border-hover);
+}
+
+/* Grid Layouts */
+.gorsel-tasarim-wrapper .grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.gorsel-tasarim-wrapper .grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.gorsel-tasarim-wrapper .editor-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .gorsel-tasarim-wrapper .grid-cols-3, 
+  .gorsel-tasarim-wrapper .grid-cols-2, 
+  .gorsel-tasarim-wrapper .editor-layout {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* Page Headers */
+.gorsel-tasarim-wrapper .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.gorsel-tasarim-wrapper .page-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.gorsel-tasarim-wrapper.dark-theme .page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 40%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gorsel-tasarim-wrapper.light-theme .page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0f172a 30%, #047857 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gorsel-tasarim-wrapper .page-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Forms & Controls */
+.gorsel-tasarim-wrapper .form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gorsel-tasarim-wrapper .form-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gorsel-tasarim-wrapper .form-control, 
+.gorsel-tasarim-wrapper .form-select, 
+.gorsel-tasarim-wrapper .form-textarea {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: var(--transition-normal);
+  outline: none;
+  width: 100%;
+}
+
+.gorsel-tasarim-wrapper .form-control:focus, 
+.gorsel-tasarim-wrapper .form-select:focus, 
+.gorsel-tasarim-wrapper .form-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+  background: var(--input-focus-bg);
+}
+
+.gorsel-tasarim-wrapper .form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Buttons */
+.gorsel-tasarim-wrapper .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  border: 1px solid transparent;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.gorsel-tasarim-wrapper .btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.gorsel-tasarim-wrapper .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.gorsel-tasarim-wrapper .btn-primary:disabled {
+  background: var(--bg-tertiary) !important;
+  color: var(--text-muted) !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.gorsel-tasarim-wrapper .btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
+}
+
+.gorsel-tasarim-wrapper.light-theme .btn-secondary {
+  background: #ffffff;
+}
+
+.gorsel-tasarim-wrapper .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--text-muted);
+}
+.gorsel-tasarim-wrapper.light-theme .btn-secondary:hover {
+  background: #f1f5f9;
+}
+
+.gorsel-tasarim-wrapper .btn-danger {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--danger);
+}
+
+.gorsel-tasarim-wrapper .btn-danger:hover {
+  background: var(--danger);
+  color: white;
+}
+
+/* Sliders / Ranges */
+.gorsel-tasarim-wrapper .range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-tertiary);
+  outline: none;
+  margin: 10px 0;
+}
+
+.gorsel-tasarim-wrapper .range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: 0 0 6px var(--primary-glow);
+}
+
+.gorsel-tasarim-wrapper .range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Badges */
+.gorsel-tasarim-wrapper .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.gorsel-tasarim-wrapper .badge-primary {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--primary);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.gorsel-tasarim-wrapper .badge-secondary {
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--secondary);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.gorsel-tasarim-wrapper .badge-success {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.gorsel-tasarim-wrapper .badge-warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+/* Canvas Container & Preview */
+.gorsel-tasarim-wrapper .canvas-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #020617;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--card-border);
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.gorsel-tasarim-wrapper .canvas-container {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gorsel-tasarim-wrapper .canvas-preview {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  border-radius: var(--radius-sm);
+}
+
+.gorsel-tasarim-wrapper .canvas-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(8, 12, 20, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 5;
+  padding: 1rem;
+  text-align: center;
+}
+
+.gorsel-tasarim-wrapper .spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(16, 185, 129, 0.1);
+  border-left-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Preset Buttons Grid */
+.gorsel-tasarim-wrapper .preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  gap: 0.5rem;
+}
+
+.gorsel-tasarim-wrapper .preset-card {
+  background: var(--preset-bg);
+  border: 1px solid var(--card-border);
+  padding: 0.65rem 0.5rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.gorsel-tasarim-wrapper .preset-card:hover {
+  background: var(--preset-active-bg);
+  border-color: var(--primary);
+}
+
+.gorsel-tasarim-wrapper .preset-card.active {
+  background: var(--preset-active-bg);
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.gorsel-tasarim-wrapper .preset-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.gorsel-tasarim-wrapper .preset-subtitle {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+}
+
+/* Animations */
+.gorsel-tasarim-wrapper .animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal dialogs */
+.gorsel-tasarim-wrapper .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(8, 12, 20, 0.8);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.gorsel-tasarim-wrapper .modal-content {
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  max-width: 500px;
+  width: 92%;
+  padding: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+/* Success sharing pulse */
+.gorsel-tasarim-wrapper .sharing-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.1);
+  border: 2px solid var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--success);
+  margin: 0 auto 1.25rem auto;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+  animation: pulse-success 2s infinite;
+}
+
+@keyframes pulse-success {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Custom layout and list styling for Scheduled Posts & History */
+.gorsel-tasarim-wrapper .upcoming-row:hover {
+  background: rgba(16, 185, 129, 0.04) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.gorsel-tasarim-wrapper .custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.gorsel-tasarim-wrapper .custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.gorsel-tasarim-wrapper .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+.gorsel-tasarim-wrapper .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.3);
+}
+
+/* Mobile specific fixes to look FLAWLESS */
+@media (max-width: 640px) {
+  .gorsel-tasarim-wrapper {
+    font-size: 14px;
+  }
+  .gorsel-tasarim-wrapper .glass-card {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+  }
+  .gorsel-tasarim-wrapper .page-title {
+    font-size: 1.5rem;
+  }
+  .gorsel-tasarim-wrapper .btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.8rem;
+  }
+  .gorsel-tasarim-wrapper .preset-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.35rem;
+  }
+  .gorsel-tasarim-wrapper .preset-title {
+    font-size: 0.72rem;
+  }
+  .gorsel-tasarim-wrapper .preset-subtitle {
+    font-size: 0.6rem;
+  }
+  .gorsel-tasarim-wrapper .canvas-wrapper {
+    aspect-ratio: 1;
+    max-height: 320px;
+  }
+}

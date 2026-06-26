@@ -1,0 +1,17 @@
+{
+  "name": "gorsel-uretici-oss",
+  "version": "1.0.0",
+  "description": "Selamlar. Ben Yigit (vr0cks), MIS 2. sinif ogrencisiyim ve su anda bir sirkette Head of IT olarak calisiyorum.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.3"
+  }
+}
