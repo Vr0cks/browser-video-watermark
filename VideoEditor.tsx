@@ -71,12 +71,12 @@ export default function VideoEditor({ setActiveTab }: VideoEditorProps) {
       // Using @ffmpeg/core instead of @ffmpeg/core-mt to avoid COOP/COEP SharedArrayBuffer requirements
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
       
-      ffmpeg.on('log', ({ message }) => {
+      ffmpeg.on('log', ({ message }: { message: string }) => {
         if (messageRef.current) messageRef.current.innerHTML = message;
         console.log(message);
       });
       
-      ffmpeg.on('progress', ({ progress, time }) => {
+      ffmpeg.on('progress', ({ progress, time }: { progress: number; time: number }) => {
         setProgress(Math.round(progress * 100));
         setMessage(`İşleniyor: %${Math.round(progress * 100)}`);
       });
